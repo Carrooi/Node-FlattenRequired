@@ -1,0 +1,31 @@
+{
+	"name": "flatten-required",
+	"description": "Flatten required module with list of all core dependencies",
+	"version": "1.0.0",
+	"author": {
+		"name": "David Kudera",
+		"email": "sakren@gmail.com"
+	},
+	"keywords": [
+		"require",
+		"required",
+		"detective",
+		"dependencies"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:sakren/node-flatten-required.git"
+	},
+	"license": "MIT",
+	"main": "./lib/Required.js",
+	"dependencies": {
+		"required": "~0.3.1",
+		"q": "~0.9.7"
+	},
+	"devDependencies": {
+		"chai": "~1.8.0"
+	},
+	"scripts": {
+		"test": "cd ./test; mocha ./index.js --reporter spec --timeout 10000;"
+	}
+}
