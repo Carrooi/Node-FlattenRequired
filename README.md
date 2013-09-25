@@ -60,6 +60,12 @@ required.findMany([
 
 This will load all dependencies from these two files and merge their results. You can of course use also depth for core modules.
 
+## Tests
+
+```
+$ npm test
+```
+
 ## Changelog
 
 * 1.0.0
