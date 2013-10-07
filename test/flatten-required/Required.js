@@ -108,11 +108,20 @@
       });
     });
     return describe('#findMany()', function() {
-      return it('should return all dependencies for more files', function(done) {
+      it('should return all dependencies for more files', function(done) {
         return required.findMany([dir + '/cascade.js', dir + '/simple-core.js']).then(function(data) {
           expect(data.files).to.be.eql([dir + '/simple.js', dir + '/a.js', dir + '/b.js', dir + '/c.js']);
           expect(data.core).to.include.keys('events');
           expect(data.core.events).not.to.be["null"];
+          return done();
+        }).done();
+      });
+      return it('should find only allowed core modules', function(done) {
+        return required.findMany([dir + '/cascade.js', dir + '/simple-core.js', dir + '/advanced-core.js'], true, ['events']).then(function(data) {
+          expect(data.core).to.include.keys(['events', 'domain', 'fs']);
+          expect(data.core.events).not.to.be["null"];
+          expect(data.core.domain).to.be["null"];
+          expect(data.core.fs).to.be["null"];
           return done();
         }).done();
       });

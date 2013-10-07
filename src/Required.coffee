@@ -38,6 +38,7 @@ class Required
 		for file in files
 			r = new Required(file)
 			r.coreDepth = coreDepth
+			r.coresAllowed = coresAllowed if coresAllowed != null
 			result.push(r.find())
 
 		deferred = Q.defer()

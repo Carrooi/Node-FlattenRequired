@@ -126,3 +126,16 @@ describe 'Required', ->
 				expect(data.core.events).not.to.be.null
 				done()
 			).done()
+
+		it 'should find only allowed core modules', (done) ->
+			required.findMany([
+				dir + '/cascade.js'
+				dir + '/simple-core.js'
+				dir + '/advanced-core.js'
+			], true, ['events']).then( (data) ->
+				expect(data.core).to.include.keys(['events', 'domain', 'fs'])
+				expect(data.core.events).not.to.be.null
+				expect(data.core.domain).to.be.null
+				expect(data.core.fs).to.be.null
+				done()
+			).done()

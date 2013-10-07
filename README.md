@@ -76,6 +76,9 @@ $ npm test
 
 ## Changelog
 
+* 1.1.1
+	+ Forgot to add option allowed cores to findMany method
+
 * 1.1.0
 	+ Optimized tests
 	+ Added option for only list of allowed cores
