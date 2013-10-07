@@ -1,7 +1,7 @@
 {
 	"name": "flatten-required",
 	"description": "Flatten required module with list of all core dependencies",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"author": {
 		"name": "David Kudera",
 		"email": "sakren@gmail.com"

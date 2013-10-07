@@ -1,1 +1,1 @@
-require('./tests');
+require('./flatten-required/Required');

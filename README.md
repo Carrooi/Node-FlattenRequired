@@ -68,5 +68,8 @@ $ npm test
 
 ## Changelog
 
+* 1.1.0
+	+ Optimized tests
+
 * 1.0.0
 	+ Initial version

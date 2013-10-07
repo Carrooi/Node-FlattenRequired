@@ -6,9 +6,9 @@
 
   path = require('path');
 
-  required = require('../lib/Required');
+  required = require('../../lib/Required');
 
-  dir = __dirname + '/data';
+  dir = path.resolve(__dirname + '/../data');
 
   describe('Required', function() {
     describe('#constructor()', function() {
