@@ -47,6 +47,14 @@ required('/path/to/module/with/core/module.js', 2).then(function(result) {
 });
 ```
 
+You can also specify list of only allowed core modules. Core modules which are not in this list, will not be searched.
+
+```
+required('/path/to/module/with/core/module.js', true, ['events', 'utils']).then(function(result) {
+	// do something
+});
+```
+
 ## Find dependencies for more files
 
 ```
@@ -70,6 +78,7 @@ $ npm test
 
 * 1.1.0
 	+ Optimized tests
+	+ Added option for only list of allowed cores
 
 * 1.0.0
 	+ Initial version

@@ -11,6 +11,8 @@ class Required
 
 	coreDepth: false
 
+	coresAllowed: null
+
 	files: null
 
 	core: null
@@ -21,6 +23,7 @@ class Required
 	constructor: (@file) ->
 		@files = []
 		@core = {}
+		@coresAllowed = []
 		@processed = []
 
 		if !fs.existsSync(@file)
@@ -30,7 +33,7 @@ class Required
 			throw new Error 'Path ' + @file + ' must be file.'
 
 
-	@findMany: (files, coreDepth = false) ->
+	@findMany: (files, coreDepth = false, coresAllowed = null) ->
 		result = []
 		for file in files
 			r = new Required(file)
@@ -98,7 +101,11 @@ class Required
 
 		cores = []
 		for module, p of @core
-			@core[module] = @findCorePath(module)
+			if @coresAllowed.length > 0 && @coresAllowed.indexOf(module) == -1
+				@core[module] = null
+			else
+				@core[module] = @findCorePath(module)
+
 			if @core[module] != null && @processed.indexOf(@core[module]) == -1 && @coreDepth != false && (@coreDepth == true || (depth <= @coreDepth))
 				cores.push(@find(@core[module], depth + 1))
 
@@ -134,18 +141,19 @@ class Required
 		return first
 
 
-fn = (file, coreDepth = false) ->
+fn = (file, coreDepth = false, coresAllowed = null) ->
 	try
 		r = new Required(file)
 	catch e
 		return Q.reject(e)
 
 	r.coreDepth = coreDepth
+	r.coresAllowed = coresAllowed if coresAllowed != null
 	return r.find()
 
-fn.findMany = (files, coreDepth = false) ->
+fn.findMany = (files, coreDepth = false, coresAllowed = null) ->
 	try
-		return Required.findMany(files, coreDepth)
+		return Required.findMany(files, coreDepth, coresAllowed)
 	catch e
 		return Q.reject(e)
 

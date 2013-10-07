@@ -84,6 +84,21 @@ describe 'Required', ->
 				done()
 			).done()
 
+		it 'should not look for dependencies for disallowed core modules', (done) ->
+			required(dir + '/advanced-core.js', true, ['events']).then( (data) ->
+				expect(data.core).to.include.keys(['fs'])
+				expect(data.core.fs).to.be.null
+				done()
+			).done()
+
+		it 'should find dependencies for allowed core modules', (done) ->
+			required(dir + '/simple-core.js', true, ['events']).then( (data) ->
+				expect(data.core).to.include.keys(['events', 'domain'])
+				expect(data.core.events).not.to.be.null
+				expect(data.core.domain).to.be.null
+				done()
+			).done()
+
 		it 'should find first level dependencies for advanced core module ', (done) ->
 			required(dir + '/advanced-core.js', 1).then( (data) ->
 				expect(data.core).to.include.keys(['fs', 'events', 'util', 'stream', 'path'])		# and many other

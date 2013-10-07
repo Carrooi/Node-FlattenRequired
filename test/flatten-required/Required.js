@@ -80,6 +80,21 @@
           return done();
         }).done();
       });
+      it('should not look for dependencies for disallowed core modules', function(done) {
+        return required(dir + '/advanced-core.js', true, ['events']).then(function(data) {
+          expect(data.core).to.include.keys(['fs']);
+          expect(data.core.fs).to.be["null"];
+          return done();
+        }).done();
+      });
+      it('should find dependencies for allowed core modules', function(done) {
+        return required(dir + '/simple-core.js', true, ['events']).then(function(data) {
+          expect(data.core).to.include.keys(['events', 'domain']);
+          expect(data.core.events).not.to.be["null"];
+          expect(data.core.domain).to.be["null"];
+          return done();
+        }).done();
+      });
       return it('should find first level dependencies for advanced core module ', function(done) {
         return required(dir + '/advanced-core.js', 1).then(function(data) {
           expect(data.core).to.include.keys(['fs', 'events', 'util', 'stream', 'path']);
