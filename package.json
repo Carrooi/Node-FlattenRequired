@@ -1,10 +1,10 @@
 {
 	"name": "flatten-required",
-	"description": "Flatten required module with list of all core dependencies",
-	"version": "1.1.1",
+	"description": "[ABANDONED] Flatten required module with list of all core dependencies",
+	"version": "1.1.2",
 	"author": {
 		"name": "David Kudera",
-		"email": "sakren@gmail.com"
+		"email": "kudera.d@gmail.com"
 	},
 	"keywords": [
 		"require",
@@ -14,7 +14,7 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:sakren/node-flatten-required.git"
+		"url": "git@github.com:Carrooi/Node-FlattenRequired.git"
 	},
 	"license": "MIT",
 	"main": "./lib/Required.js",
@@ -29,3 +29,4 @@
 		"test": "cd ./test; mocha ./index.js --reporter spec --timeout 10000;"
 	}
 }
+
